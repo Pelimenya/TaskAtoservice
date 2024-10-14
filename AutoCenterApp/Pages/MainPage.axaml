@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:AutoCenterApp.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AutoCenterApp.Pages.MainPage"
+             x:DataType="models:Order"
+             x:CompileBindings="False"
+             FontSize="17">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/> 
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="LvOrders" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Image Source="{Binding Image}" Width="300" Height="300" />
+                                <TextBlock Text="{Binding OrderPersonalNavigation.FullName}"
+                                           HorizontalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Margin="30,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding OrderAutoNavigation.AutoModelNavigation.Mark.MarkName}" Margin="10"/>
+                                    <TextBlock Text="{Binding OrderAutoNavigation.AutoModelNavigation.ModelName}" Margin="0,10"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding OrderDate, StringFormat='{}{0:dddd, dd MMMM , yyyy г. , HH:mm  }'}"/>
+                                <TextBlock Text="{Binding OrderAutoNavigation.MaskStateNumber}" Margin="10"/>
+                                <TextBlock Text="{Binding OrderStatusNavigation.StatusName}"
+                                           Foreground="{Binding OrderStatusNavigation.SatusColor}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <Button Content="Выход" FontSize="15"  Click="Button_OnClick_Exit" Margin="5" HorizontalAlignment="Left"/>
+        <Button Content="Страница 2" FontSize="15" Grid.Row="1" Click="Button_OnClick" Margin="5" HorizontalAlignment="Right"/>
+            
+        </StackPanel>
+
+    </Grid>
+</UserControl>

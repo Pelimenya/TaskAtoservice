@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="AutoCenterApp/App.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+        <entry key="AutoCenterApp/MainWindow.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+        <entry key="AutoCenterApp/Pages/LoginPage.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+        <entry key="AutoCenterApp/Pages/Main.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+        <entry key="AutoCenterApp/Pages/MainPage.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+        <entry key="AutoCenterApp/Pages/TablePage.axaml" value="AutoCenterApp/AutoCenterApp.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

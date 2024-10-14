@@ -1,0 +1,80 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:AutoCenterApp.Models"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:Class="AutoCenterApp.Pages.TablePage"
+             x:DataType="models:Order">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Поиск и фильтрация -->
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="Поиск:" VerticalAlignment="Center" />
+                <TextBox Width="200" x:Name="tbSearch" TextChanged="TbSearch_OnTextChanged" />
+
+                <TextBlock Text="Фильтрация по статусу:" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <ComboBox Width="200" x:Name="cbFilter" SelectionChanged="CbFilter_OnSelectionChanged">
+                    <ComboBoxItem Content="Все" />
+                    <ComboBoxItem Content="Выполнено" />
+                    <ComboBoxItem Content="Запланированно" />
+                    <ComboBoxItem Content="Принята к исполнению" />
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <!-- Таблица -->
+
+        <DataGrid Grid.Row="1"
+                  LoadingRow="DataGrid_OnLoadingRow"
+                  x:Name="Dg"
+
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="All"
+                  HeadersVisibility="All"
+                  CanUserSortColumns="True"
+                  CanUserResizeColumns="True"
+                  Margin="0,10"
+                  MinHeight="200"
+                  MinWidth="400"
+                  IsVisible="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Авто">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{} {0} {1}">
+                            <Binding Path="OrderAutoNavigation.AutoModelNavigation.Mark.MarkName" />
+                            <Binding Path="OrderAutoNavigation.AutoModelNavigation.ModelName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Гос. Номер" Binding="{Binding OrderAutoNavigation.StateNumber}" />
+                <DataGridTextColumn Header="Клиент"
+                                    Binding="{Binding OrderAutoNavigation.AutoOwnerNavigation.FullName}" />
+                <DataGridTextColumn Header="Дата" Binding="{Binding OrderDate, StringFormat='{}{0:F}'}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Кнопка перехода -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+            
+            <Button Content="Выход" FontSize="15" Click="Button_OnClick_Exit" Margin="5"/>
+
+            <Button
+                Content="Страница 1"
+                FontSize="15"
+                Click="Button_OnClick"
+                Margin="5"/>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>
